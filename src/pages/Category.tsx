@@ -89,7 +89,7 @@ function Category() {
     }
     setLoading(false);
   };
-  console.log(lastDoc);
+
   useEffect(() => {
     getOffersListings();
   }, []);
@@ -104,26 +104,37 @@ function Category() {
             Places for {categoryName}
           </p>
         </div>
-        <div className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-4">
-          {offersListings.map((item: listing) => {
-            return (
-              <ListingCard
-                key={item.id}
-                listing={item.data}
-                id={item.id}
-                allowAction={false}
-              />
-            );
-          })}
-        </div>
-        {lastDoc && (
-          <div className=" flex  justify-center my-6">
-            <Button
-              onClick={getMoreOffersListings}
-              className="w-full md:w-auto"
-            >
-              Load More
-            </Button>
+        {offersListings.length > 0 ? (
+          <>
+            {" "}
+            <div className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-4">
+              {offersListings.map((item: listing) => {
+                return (
+                  <ListingCard
+                    key={item.id}
+                    listing={item.data}
+                    id={item.id}
+                    allowAction={false}
+                  />
+                );
+              })}
+            </div>
+            {lastDoc && (
+              <div className=" flex  justify-center my-6">
+                <Button
+                  onClick={getMoreOffersListings}
+                  className="w-full md:w-auto"
+                >
+                  Load More
+                </Button>
+              </div>
+            )}
+          </>
+        ) : (
+          <div>
+            <p className="text-center">
+              There are no places for {categoryName} now !
+            </p>{" "}
           </div>
         )}
       </div>
