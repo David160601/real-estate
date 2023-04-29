@@ -36,7 +36,7 @@ function Slider({ listings }: { listings: listing[] }) {
               onClick={() => {
                 handleListingCLick(listing.data.type, listing.id);
               }}
-              className="h-[40vh] cursor-pointer relative"
+              className="h-[40vh] md:h-[50vh] cursor-pointer relative"
               style={{
                 background: `url("${listing.data.imgUrls[0]}")`,
                 backgroundRepeat: "no-repeat",
